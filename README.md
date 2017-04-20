@@ -16,3 +16,5 @@ Overview: There are (2) html files, the terminal.html is what you project to the
 5. Position and scale the base guideline to fit the styro face’s eyes and lips via the projector.
 
 6. Start controlling the face using remote.html.
+
+Note: You must have Internet connection when testing this out since the application needs to connect to a web socket server in order to work.
