@@ -1,0 +1,58 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Heroes vs. Villains</title>
+
+<link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+
+<script>var zon = true;</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+<script src="http://d309knd7es5f10.cloudfront.net/zimserver_urls.js"></script>
+<script src="http://d309knd7es5f10.cloudfront.net/zimsocket_1.0.js"></script>
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script src="https://d309knd7es5f10.cloudfront.net/zim_4.8.1.js"></script>
+
+<script src="remote/view.js"></script>
+<script src="remote/data.js"></script>
+<script src="remote/control.js"></script>
+
+<style>
+	body {margin:0px; padding:0px; background-color:#000;}
+	#myCanvas {position:absolute; background-color:#000;}
+</style>
+
+<script>
+var scaling = "fit";
+var width = 640;
+var height = 960;
+var color = "#000";
+var frame = new zim.Frame(scaling, width, height, color);
+frame.on("ready", function() {
+	var stage = frame.stage;
+	var stageW = frame.width;
+	var stageH = frame.height;
+
+	frame.loadAssets(["remote.jpg"], "assets/");
+	
+	frame.on("complete", function() {
+
+		var server = zimSocketURL;
+		var appName = "faceOff";
+
+		var view = remote.makeView(frame);
+		var data = remote.makeData(view, server, appName);
+		var remo = remote.makeControl(view, data);
+
+
+	}); // end of loading assets
+	stage.update();
+
+}); // end of ready
+</script>
+</head>
+
+<body>
+</body>
+</html>

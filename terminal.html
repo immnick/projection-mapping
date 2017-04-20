@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>PROJECTOR SCREEN</title>
+
+<link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+<script>var zon = true;</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+<script src="http://d309knd7es5f10.cloudfront.net/zimserver_urls.js"></script>
+<script src="http://d309knd7es5f10.cloudfront.net/zimsocket_1.0.js"></script>
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script src="https://d309knd7es5f10.cloudfront.net/zim_4.8.1.js"></script>
+
+<script src="remote/view2.js"></script>
+<script src="remote/data2.js"></script>
+<script src="remote/control2.js"></script>
+
+<style>
+	body {margin:0px; padding:0px; background-color:#000;}
+	#myCanvas {position:absolute; background-color:#EEE;}
+</style>
+
+<script>
+
+var scaling = "fit";
+var width = 1024;
+var height = 1000;
+var color = "#000";
+var frame = new zim.Frame(scaling, width, height, color);
+frame.on("ready", function() {
+	var stage = frame.stage;
+	var stageW = frame.width;
+	var stageH = frame.height;
+
+	frame.loadAssets(["base2.jpg","01-villain.jpg","02-villain.jpg","03-villain.jpg","04-villain.jpg","05-villain.jpg","06-villain.jpg","07-villain.jpg","08-villain.jpg","09-villain.jpg","10-villain.jpg","01-hero.jpg","02-hero.jpg","03-hero.jpg","04-hero.jpg","05-hero.jpg","06-hero.jpg","07-hero.jpg","08-hero.jpg","09-hero.jpg","10-hero.jpg",
+
+		"01-villain.wav","02-villain.wav","03-villain.wav","04-villain.wav","05-villain.wav","06-villain.wav","07-villain.wav","08-villain.wav","09-villain.wav","10-villain.wav","01-hero.wav","02-hero.wav","03-hero.wav","04-hero.wav","05-hero.wav","06-hero.wav","07-hero.wav","08-hero.wav","09-hero.wav","10-hero.wav",], "assets/");
+	
+	frame.on("complete", function() {
+
+		var server = zimSocketURL;
+		var appName = "faceOff";
+
+		var view = remote.makeView(frame);
+		var data = remote.makeData(view, server, appName);
+		var remo = remote.makeControl(view, data);
+
+
+		stage.update();
+	});
+
+}); // end of ready
+</script>
+</head>
+
+<body>
+</body>
+</html>
+
